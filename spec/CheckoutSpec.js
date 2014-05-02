@@ -1,7 +1,7 @@
 describe("Checkout", function(){
 	var checkout;
 	beforeEach(function () {
-		checkout = new Checkout();
+		checkout = new Checkout({"A":50});
 	});
 	
 	it("should exist", function(){
