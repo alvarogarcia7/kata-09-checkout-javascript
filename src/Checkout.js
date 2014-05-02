@@ -9,12 +9,11 @@ Checkout.prototype.total = function() {
 
 Checkout.prototype.scan = function(products) {
 	var i, j=0, unitPrice = 50, multipleUnitsDiscount = 20;
-
-	if(this.productPricing && this.productPricing[products]){
-		unitPrice = this.productPricing[products];
-	}
 	
 	for (i = products.length - 1; i >= 0; i--) {
+		if(this.productPricing && this.productPricing[products]){
+			unitPrice = this.productPricing[products[i]];
+		}
 		this.totalAmount += unitPrice;
 		j++;
 		if(j%3 == 0){
