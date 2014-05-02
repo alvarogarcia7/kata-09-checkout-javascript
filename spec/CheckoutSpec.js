@@ -23,4 +23,9 @@ describe("Checkout", function(){
 			expect(checkout.total()).toEqual(130);
 		});
 	});
+
+	it("should be simple pricing with one product", function(){
+			checkout.scan("B");
+			expect(checkout.total()).toEqual(30);
+		});
 });
