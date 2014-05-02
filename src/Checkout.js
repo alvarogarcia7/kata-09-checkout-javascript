@@ -5,3 +5,7 @@ var Checkout = function(){
 Checkout.prototype.total = function() {
 	return this.totalAmount;
 };
+
+Checkout.prototype.scan = function(products) {
+	this.totalAmount += 50;
+};
