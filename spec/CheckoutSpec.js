@@ -16,4 +16,9 @@ describe("Checkout", function(){
 		checkout.scan("A");
 		expect(checkout.total()).toEqual(50);
 	});
+
+	it("should apply special pricing with three products in a row", function(){
+		checkout.scan("AAA");
+		expect(checkout.total()).toEqual(130);
+	});
 });
