@@ -25,6 +25,7 @@ describe("Checkout", function(){
 	});
 
 	it("should be simple pricing with one product", function(){
+			checkout = new Checkout({"B":30});
 			checkout.scan("B");
 			expect(checkout.total()).toEqual(30);
 		});
