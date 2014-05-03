@@ -1,13 +1,17 @@
 var Checkout = function(productPricing){
 	this.productPricing = productPricing;
+	this.generateAmounts(productPricing);
+	this.totalAmount = 0;
+}
+
+Checkout.prototype.generateAmounts = function(productPricing) {
 	this.amount = [];
 	for(var i in productPricing){
 		if(productPricing.hasOwnProperty(i)){
 			this.amount[i]=0;
 		}	
 	}
-	this.totalAmount = 0;
-}
+};
 
 Checkout.prototype.total = function() {
 	return this.totalAmount;
