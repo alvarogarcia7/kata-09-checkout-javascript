@@ -26,8 +26,8 @@ Checkout.prototype.scan = function(products) {
 	
 	for (i = products.length - 1; i >= 0; i--) {
 		currentProduct = products[i];
-		if(this.getPrice(currentProduct)){
-			unitPrice = this.getPrice(currentProduct);
+		unitPrice = this.getPrice(currentProduct);
+		if(unitPrice){
 			this.amount[currentProduct]++;
 			this.totalAmount += unitPrice;
 
