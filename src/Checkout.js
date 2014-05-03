@@ -14,18 +14,19 @@ Checkout.prototype.total = function() {
 };
 
 Checkout.prototype.scan = function(products) {
-	var i, j=0, unitPrice;
+	var i, currentProduct, unitPrice;
 	
 	for (i = products.length - 1; i >= 0; i--) {
-		if(this.productPricing[products[i]]){
-			unitPrice = this.productPricing[products[i]];
-			this.amount[products[i]]++;
+		currentProduct = products[i];
+		if(this.productPricing[currentProduct]){
+			unitPrice = this.productPricing[currentProduct];
+			this.amount[currentProduct]++;
 			this.totalAmount += unitPrice;
 
-			if(this.isDiscountedProduct(products[i])){
-				this.totalAmount -= this.amount[products[i]]*unitPrice;
-				this.totalAmount += this.productPricing[this.getCompoundName(products[i])];
-				this.amount[products[i]]=0;
+			if(this.isDiscountedProduct(currentProduct)){
+				this.totalAmount -= this.amount[currentProduct]*unitPrice;
+				this.totalAmount += this.productPricing[this.getCompoundName(currentProduct)];
+				this.amount[currentProduct]=0;
 			}	
 		}
 	};
@@ -45,6 +46,6 @@ Checkout.prototype.getCompoundName = function(product) {
 
 Checkout.prototype.isDiscountedProduct = function(product) {
 	var compoundName = this.getCompoundName(product);
-	return this.productPricing[compoundName] !== undefined;
+	return this.productPricing[compoundName] !== undefined	;
 };
 
