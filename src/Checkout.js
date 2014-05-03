@@ -21,6 +21,16 @@ Checkout.prototype.total = function() {
 	return this.totalAmount;
 };
 
+Checkout.prototype.addUnit = function(product) {
+	this.amount[product]++;
+};
+Checkout.prototype.resetUnits = function(product) {
+	this.amount[product] = 0;
+};
+Checkout.prototype.getAmount = function(product) {
+	return this.amount[product];
+};
+
 Checkout.prototype.scan = function(products) {
 	var i, currentProduct, unitPrice;
 	
@@ -28,13 +38,13 @@ Checkout.prototype.scan = function(products) {
 		currentProduct = products[i];
 		unitPrice = this.getPrice(currentProduct);
 		if(unitPrice){
-			this.amount[currentProduct]++;
+			this.addUnit(currentProduct);
 			this.totalAmount += unitPrice;
 
 			if(this.isDiscountedProduct(currentProduct)){
-				this.totalAmount -= this.amount[currentProduct]*unitPrice;
+				this.totalAmount -= this.getAmount(currentProduct) * unitPrice;
 				this.totalAmount += this.getPrice(this.getCompoundName(currentProduct));
-				this.amount[currentProduct]=0;
+				this.resetUnits[currentProduct];
 			}	
 		}
 	};
