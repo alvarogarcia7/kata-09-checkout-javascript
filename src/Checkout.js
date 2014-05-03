@@ -24,9 +24,11 @@ Checkout.prototype.total = function() {
 Checkout.prototype.addUnit = function(product) {
 	this.amount[product]++;
 };
+
 Checkout.prototype.resetUnits = function(product) {
 	this.amount[product] = 0;
 };
+
 Checkout.prototype.getAmount = function(product) {
 	return this.amount[product];
 };
@@ -48,16 +50,15 @@ Checkout.prototype.scan = function(products) {
 			}	
 		}
 	};
-
 };
 
 Checkout.prototype.getCompoundName = function(product) {
 	var compoundName = '';
 
 	if(this.amount[product] === 2){
-		compoundName= product+""+product;
+		compoundName= product + "" + product;
 	} else if(this.amount[product] === 3) {
-		compoundName= product+""+product + ""+product;
+		compoundName= product + "" + product + "" + product;
 	}
 	return compoundName;
 };
