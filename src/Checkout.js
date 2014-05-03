@@ -13,6 +13,10 @@ Checkout.prototype.generateAmounts = function(productPricing) {
 	}
 };
 
+Checkout.prototype.getPrice = function(product) {
+	return this.productPricing[product];
+};
+
 Checkout.prototype.total = function() {
 	return this.totalAmount;
 };
@@ -22,14 +26,14 @@ Checkout.prototype.scan = function(products) {
 	
 	for (i = products.length - 1; i >= 0; i--) {
 		currentProduct = products[i];
-		if(this.productPricing[currentProduct]){
-			unitPrice = this.productPricing[currentProduct];
+		if(this.getPrice(currentProduct)){
+			unitPrice = this.getPrice(currentProduct);
 			this.amount[currentProduct]++;
 			this.totalAmount += unitPrice;
 
 			if(this.isDiscountedProduct(currentProduct)){
 				this.totalAmount -= this.amount[currentProduct]*unitPrice;
-				this.totalAmount += this.productPricing[this.getCompoundName(currentProduct)];
+				this.totalAmount += this.getPrice(this.getCompoundName(currentProduct));
 				this.amount[currentProduct]=0;
 			}	
 		}
