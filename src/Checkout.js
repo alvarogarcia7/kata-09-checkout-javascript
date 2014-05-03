@@ -46,7 +46,7 @@ Checkout.prototype.scan = function(products) {
 			if(this.isDiscountedProduct(currentProduct)){
 				this.totalAmount -= this.getAmount(currentProduct) * unitPrice;
 				this.totalAmount += this.getPrice(this.getCompoundName(currentProduct));
-				this.resetUnits[currentProduct];
+				this.resetUnits(currentProduct);
 			}	
 		}
 	};
