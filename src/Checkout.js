@@ -44,13 +44,7 @@ Checkout.prototype.getCompoundName = function(product) {
 };
 
 Checkout.prototype.isDiscountedProduct = function(product) {
-
 	var compoundName = this.getCompoundName(product);
-
-	if(this.productPricing[compoundName]){
-		return true;
-	} else {
-		return false;
-	}
+	return this.productPricing[compoundName] !== undefined;
 };
 
